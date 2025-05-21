@@ -92,6 +92,7 @@ de graças teve uma correlação de 0.09.
 
 Temperatura teve uma correlação negativa de -0,07 com as vendas, isto é, em regiões mais frias, o número de vendas é consideravelmente maior.
 
+
 **💻 Resultados no Machine Learning**
 
 Para prever as vendas nas lojas do Walmart, testei diferentes algoritmos de regressão. A avaliação foi feita com base nas métricas RMSE (Root Mean Squared Error) e R² (coeficiente de determinação).
@@ -117,6 +118,7 @@ RMSE: ~497.456
 R²: 0.162
 Modelos lineares com menor capacidade de previsão neste contexto.
 
+
 **🔍 Importância das Variáveis (Feature Importance)**
 
 Variável mais relevante em todos os modelos: Loja
@@ -129,6 +131,7 @@ Sazonalidade também contribui: month, day e Temperature são relevantes.
 Modelos lineares (Lasso, Ridge):
 Datas comemorativas como Thanksgiving e Christmas tiveram peso elevado.
 Boa capacidade de capturar relações específicas, mesmo com menor performance geral.
+
 
 **🎯 Conclusão dos Resultados ML**
 
