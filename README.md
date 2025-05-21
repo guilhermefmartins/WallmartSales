@@ -93,7 +93,7 @@ de graças teve uma correlação de 0.09.
 Temperatura teve uma correlação negativa de -0,07 com as vendas, isto é, em regiões mais frias, o número de vendas é consideravelmente maior.
 
 
-**💻 Resultados no Machine Learning**
+## 💻 Resultados no Machine Learning
 
 Para prever as vendas nas lojas do Walmart, testei diferentes algoritmos de regressão. A avaliação foi feita com base nas métricas RMSE (Root Mean Squared Error) e R² (coeficiente de determinação).
 
@@ -119,7 +119,7 @@ R²: 0.162
 Modelos lineares com menor capacidade de previsão neste contexto.
 
 
-**🔍 Importância das Variáveis (Feature Importance)**
+## 🔍 Importância das Variáveis (Feature Importance)
 
 Variável mais relevante em todos os modelos: Loja
 → Indica que o histórico e perfil da loja influenciam fortemente nas vendas.
@@ -133,7 +133,7 @@ Datas comemorativas como Thanksgiving e Christmas tiveram peso elevado.
 Boa capacidade de capturar relações específicas, mesmo com menor performance geral.
 
 
-**🎯 Conclusão dos Resultados ML**
+##🎯 Conclusão dos Resultados ML
 
 O modelo XGBoost se destacou como o mais eficaz para prever vendas, demonstrando que técnicas avançadas de boosting são adequadas para lidar com a complexidade do comportamento de consumo nas lojas.
 
