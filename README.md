@@ -55,7 +55,7 @@ LASSO R2: 0.16222732588998856
 XGBoost RMSE: 86781.98764726309
 XGBoost R2: 0.9745038119739273
 
-3. **Visualização Crítica**:
+## 📊 Visualização Crítica
 
 
 ![DACorr](https://github.com/user-attachments/assets/1282b638-8bc4-408c-9f51-151dd585a606)
