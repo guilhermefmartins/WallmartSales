@@ -117,11 +117,12 @@ RMSE: ~497.456
 R²: 0.162
 Modelos lineares com menor capacidade de previsão neste contexto.
 
-- Importância das Variáveis (Feature Importance)
+**🔍 Importância das Variáveis (Feature Importance)**
+
 Variável mais relevante em todos os modelos: Loja
 → Indica que o histórico e perfil da loja influenciam fortemente nas vendas.
 
-Modelos de árvore (RF, GBT, XGBoost):
+Modelos não lineares (RF, GBT, XGBoost):
 Variáveis econômicas como Unemployment(Desemprego) e CPI(índice de desemprego) aparecem com grande influência.
 Sazonalidade também contribui: month, day e Temperature são relevantes.
 
