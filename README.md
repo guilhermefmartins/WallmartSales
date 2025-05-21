@@ -133,7 +133,7 @@ Datas comemorativas como Thanksgiving e Christmas tiveram peso elevado.
 Boa capacidade de capturar relações específicas, mesmo com menor performance geral.
 
 
-##🎯 Conclusão dos Resultados ML
+## 🎯 Conclusão dos Resultados ML
 
 O modelo XGBoost se destacou como o mais eficaz para prever vendas, demonstrando que técnicas avançadas de boosting são adequadas para lidar com a complexidade do comportamento de consumo nas lojas.
 
