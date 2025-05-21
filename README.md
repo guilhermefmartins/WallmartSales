@@ -1,6 +1,6 @@
-# 📊 Análise de Severidade de Câncer: Modelos Lineares vs. Não Lineares
+# 📊 Walmart Sales Insights: Análise Preditiva e Exploratória das Vendas em 45 Lojas (EUA, 2010-2012)
 
-**Objetivo**: Prever o "Target_Severity_Score" com base em variáveis como hábitos de vida, fatores genéticos e custos de tratamento, comparando desempenho de modelos lineares e não lineares.
+**Objetivo**: Analisar e prever as vendas de 45 lojas do Walmart nos EUA (2010-2012), identificando padrões sazonais, impactos de promoções e variáveis críticas para otimizar decisões de negócios.
 
 ## 📌 Sumário
 - [Dataset](#dataset)
@@ -10,37 +10,58 @@
 - [Como Reproduzir](#-como-reproduzir)
 
 ## Dataset
-- **Origem**: Dados sintéticos simulando pacientes com câncer (2015-2024).
-- **Pré-processamento**:
-  - Exclusão de variaveis indeferentes pro modelo.
+- **Origem**: O arquivo contém informações sobre as Vendas Semanais de 45 lojas no período de 2010 a 2012, incluindo fatores que impactam as vendas, como Feriados, Temperatura, Preço do Combustível, IPC (Índice de Preços ao Consumidor) e Taxa de Desemprego. Link do dataset: https://www.kaggle.com/datasets/varsharam/walmart-sales-dataset-of-45stores/data
+- **Pré-processamento: Análise de dados**:
+  - Criação de novas variáveis.
   - Tratamento de valores nulos.
-  - OneHotEncoder para features não ordenadas
-  - LabelEncoder quando havia uma relação natural de ordenação
+  - Tradução do nome da variáveis para o português
+    
+- **Pré-processamento: Machine Learning**:
+  - Exclusão de variaveis indeferentes pro modelo: ['Fuel_Price', 'Super_Bowl', 'Labour_Day'] .
   - Padronização e normalização de features para melhor performance dos modelos.
+  - Divisão de 80/20 para treino e teste dos modelos.
 
 ## 🔍 Descobertas Chave
-1. **Features Mais Impactantes**:
-   - `Smoking` e `Genetic_Risk` tiveram maior peso nos modelos não lineares.
-   - `Treatment_Cost_USD` mostrou relação inversa com o score de severidade, isto é, quanto mais caro for custo de tratamento do cancer, menor o risco corrido.
-   -  (coef. negativo em modelos lineares).
+1. **Features Mais Impactantes: Análise de dados**:
+   - A loja foi a variável que apresentou um maior impacto nas vendas, isto é, caracteristicas como
+     tamanho da loja, localização... impactaram positivamente nas vendas
+   - Temperatura, indice de preços e desemprego apresentaram uma correlação negativa em relação a variavel
+     target "Vendas Semanais", isso diz que, na medida que essas variaveis caem de valor, aumenta o número
+     de vendas.
+   - O dia do trabalho e o natal foram feriados que não tiveram praticamente nenhum impacto na variável
+     
+   **Features Mais Impactantes: Machine Learning**:
+   - Dia de ação de graças, Natal e Taxa de desemprego tiveram maior peso nos modelos lineares.
+   - Loja, Desemprego, CPI e Temperatura tiveram maior peso nos modelos não lineares.
+  
 
-2. **Performance dos Modelos**:
+3. **Performance dos Modelos**:
 
 === Comparação dos Modelos ===
-           Model       R²      MAE     RMSE
-   Decision Tree 0.886747 0.322330 0.401145
-   Random Forest 0.954968 0.202192 0.252951
-         XGBoost 0.995268 0.065404 0.082000
-LinearRegression 0.999994 0.002496 0.002886
-           Ridge 0.999994 0.002496 0.002886
-           Lasso 0.999952 0.006624 0.008233
+- DESCONSIDERANDO FEATURES QUE POSSUEM INFLUENCIA INFERIOR A 0.01.
+
+RF RMSE: 398472.4917170457
+RF R2: 0.4624575598625814
+
+GBT RMSE: 181167.2578936221
+GBT R2: 0.8888842839339648
+
+RIDGE RMSE: 497456.4403781198
+RIDGE R2: 0.16222734058622656
+
+LASSO RMSE: 497456.4447413191
+LASSO R2: 0.16222732588998856
+
+XGBoost RMSE: 86781.98764726309
+XGBoost R2: 0.9745038119739273
 
 3. **Visualização Crítica**:
- ![image](https://github.com/user-attachments/assets/a4b01a5b-7429-4592-8261-bef5a6132390)
- ![image](https://github.com/user-attachments/assets/4b38eec9-5f80-49cd-9a78-c3e0a1f5f13e)
- ![image](https://github.com/user-attachments/assets/fcb0bc64-f127-45f6-9132-9dd3e5b0efc4)
- ![image](https://github.com/user-attachments/assets/023fef94-368d-4d18-8250-7e50bfa94f6e)
- ![image](https://github.com/user-attachments/assets/d2cde309-ae92-45b3-ad0a-4cdb5cc52fce)
+
+
+![DACorr](https://github.com/user-attachments/assets/1282b638-8bc4-408c-9f51-151dd585a606)
+![DADesempregoVSVendas](https://github.com/user-attachments/assets/ed497011-ca3a-4bf7-9bb5-742ecdffd19c)
+![GasolinaVSPreco](https://github.com/user-attachments/assets/99252289-80f4-43b0-8f39-09f753531693)
+
 
 
 ## ⚙️ Técnicas Utilizadas
@@ -49,20 +70,64 @@ LinearRegression 0.999994 0.002496 0.002886
    - NumPy: Armazenar e manipular dados numéricos de forma eficiente
    - Seaborn - criação de gráficos estatísticos, como foi feito o heatmap
    - Matplotlib - Analise gráfica dos dados
+   - PySpark: Para manipulação e análise de Big data.
 - **Modelagem**:
-  - **Lineares**: Regressão Linear, Ridge, Lasso.
-  - **Não Lineares**: XGBoost, Random Forest, Decision Trees.
+  - **Lineares**: Ridge, Lasso.
+  - **Não Lineares**: XGBoost, Random Forest, Gradient Boosted Decision Tree.
 - **Avaliação**: R², MAE, RMSE (para interpretabilidade).
   - R²: Avalia o quanto o modelo explica a variação dos dados.
   - RMSE (Root Mean Squared Error): Raiz do erro quadrático médico, penaliza erros grandes de forma mais intensa.
   - MAE (Mean Absolute Error): Média dos valores absolutos dos erros, não penaliza grandes desvios, sendo menos sensivel a outliers.
 
 ## 📈 Resultados
-A análise revelou que os modelos lineares (Linear Regression, Ridge e Lasso) performaram excepcionalmente bem, com valores de R² superiores a 0.999, indicando alta capacidade de explicar a variabilidade dos dados.
-Além disso, os erros (MAE e RMSE) foram extremamente baixos, sugerindo previsões precisas e estáveis. Esses resultados apontam para uma predominância de relações lineares entre as variáveis.
+Em relação a análise de dados, conclui-se que a Loja foi a variavel que mais impactou com o crescimento das vendas, considerando fatores
+como localização, tamanho, entre outros fatores.
 
-Por outro lado, os modelos não lineares (Decision Tree, Random Forest e XGBoost) também apresentaram boa performance, com destaque para o XGBoost (R² = 0.995), que capturou interações complexas entre variáveis.
-O Random Forest também se mostrou robusto, enquanto o Decision Tree teve um desempenho inferior, mas ainda interpretável.
+Ao analisarmos os dois gráficos, comparando desemprego e o preço da gasolina com as vendas, percebemos que tanto o preço da gasolina
+quanto a taxa de desemprego, ao aumentar até certo ponto: Gasolina com preço superior a $3.75 e indice de desemprego superior a 9, há uma queda
+significativa nas vendas.
 
-As análises de importância de features destacaram Smoking, Genetic_Risk, Alcohol_Use e Air_Pollution como os principais fatores de influência em ambos os tipos de modelos, 
-validando as correlações encontradas na etapa de análise exploratória. Isso reforça a confiabilidade dos modelos em identificar padrões críticos para a severidade do câncer.
+Feriados tendem a ter impactos diferentes nas vendas, visto que, o dia do trabalho não houve influência nenhuma nas vendas, em contrapartida, o dia de ação
+de graças teve uma correlação de 0.09.
+
+Temperatura teve uma correlação negativa de -0,07 com as vendas, isto é, em regiões mais frias, o número de vendas é consideravelmente maior.
+**Resultados no Machine Learning**
+Para prever as vendas nas lojas do Walmart, testei diferentes algoritmos de regressão. A avaliação foi feita com base nas métricas RMSE (Root Mean Squared Error) e R² (coeficiente de determinação).
+
+🔹 Desempenho dos Modelos:
+XGBoost
+RMSE: 86.781,98
+R²: 0.974
+Melhor desempenho geral, com excelente capacidade preditiva.
+
+GBT (Gradient Boosted Trees)
+RMSE: 181.167,25
+R²: 0.889
+Bom desempenho, destacando-se por capturar padrões não lineares.
+
+Random Forest
+RMSE: 398.472,49
+R²: 0.462
+Performance intermediária, mas com insights relevantes sobre variáveis.
+
+Lasso / Ridge
+RMSE: ~497.456
+R²: 0.162
+Modelos lineares com menor capacidade de previsão neste contexto.
+
+- Importância das Variáveis (Feature Importance)
+Variável mais relevante em todos os modelos: Loja
+→ Indica que o histórico e perfil da loja influenciam fortemente nas vendas.
+
+Modelos de árvore (RF, GBT, XGBoost):
+Variáveis econômicas como Unemployment(Desemprego) e CPI(índice de desemprego) aparecem com grande influência.
+Sazonalidade também contribui: month, day e Temperature são relevantes.
+
+Modelos lineares (Lasso, Ridge):
+Datas comemorativas como Thanksgiving e Christmas tiveram peso elevado.
+Boa capacidade de capturar relações específicas, mesmo com menor performance geral.
+
+**🎯 Conclusão dos Resultados ML
+O modelo XGBoost se destacou como o mais eficaz para prever vendas, demonstrando que técnicas avançadas de boosting são adequadas para lidar com a complexidade do comportamento de consumo nas lojas.
+
+Além disso, a análise de importância das features revelou quais fatores mais influenciam as vendas, auxiliando na tomada de decisões estratégicas para campanhas sazonais, localização e foco em indicadores econômicos.
