@@ -80,17 +80,18 @@ XGBoost R2: 0.9745038119739273
   - MAE (Mean Absolute Error): Média dos valores absolutos dos erros, não penaliza grandes desvios, sendo menos sensivel a outliers.
 
 ## 📈 Resultados
-Em relação a análise de dados, conclui-se que a Loja foi a variavel que mais impactou com o crescimento das vendas, considerando fatores
-como localização, tamanho, entre outros fatores.
+Em relação a análise de dados, conclui-se que a Loja foi a variável que mais impactou com o crescimento das vendas, considerando fatores
+como localização e tamanho por exemplo.
 
 Ao analisarmos os dois gráficos, comparando desemprego e o preço da gasolina com as vendas, percebemos que tanto o preço da gasolina
-quanto a taxa de desemprego, ao aumentar até certo ponto: Gasolina com preço superior a $3.75 e indice de desemprego superior a 9, há uma queda
+quanto a taxa de desemprego, ao aumentar até certo ponto: Gasolina com preço superior a $3.75 e indice de desemprego superior a 9%, há uma queda
 significativa nas vendas.
 
 Feriados tendem a ter impactos diferentes nas vendas, visto que, o dia do trabalho não houve influência nenhuma nas vendas, em contrapartida, o dia de ação
 de graças teve uma correlação de 0.09.
 
 Temperatura teve uma correlação negativa de -0,07 com as vendas, isto é, em regiões mais frias, o número de vendas é consideravelmente maior.
+
 **Resultados no Machine Learning**
 Para prever as vendas nas lojas do Walmart, testei diferentes algoritmos de regressão. A avaliação foi feita com base nas métricas RMSE (Root Mean Squared Error) e R² (coeficiente de determinação).
 
